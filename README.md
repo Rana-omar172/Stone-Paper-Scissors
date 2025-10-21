@@ -42,7 +42,7 @@ Each click triggers a round and updates the scoreboard dynamically.
 
 ## 🚀 Live Demo
 👉 **Play it here:**  
-🔗 [https://rana-omar172.github.io/Stone-Paper-Scissors/](https://rana-omar172.github.io/Stone-Paper-Scissors/)
+🔗 [https://rana-omar172.github.io/Stone-Paper-Scissors/](https://rana-omar172.github.io/Stone-Paper-Scissors/))
 
 ---
 
