@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stone Paper Scissors</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: white;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+
+    .choices {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    button {
+      background: #1e40af;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.8rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+    }
+
+    button:hover {
+      background: #2563eb;
+      transform: scale(1.05);
+    }
+
+    .result-box {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      text-align: center;
+      width: 280px;
+    }
+
+    .result-box p {
+      margin: 8px 0;
+      font-size: 1rem;
+    }
+
+    .score {
+      margin-top: 1rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .reset-btn {
+      background: #dc2626;
+      margin-top: 1.5rem;
+    }
+
+    .reset-btn:hover {
+      background: #ef4444;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Stone Paper Scissors</h1>
+
+  <div class="choices">
+    <button onclick="playGame('Rock')">🪨 Rock</button>
+    <button onclick="playGame('Paper')">📄 Paper</button>
+    <button onclick="playGame('Scissor')">✂️ Scissor</button>
+  </div>
+
+  <div class="result-box">
+    <p id="playerChoice">You chose: —</p>
+    <p id="computerChoice">Computer chose: —</p>
+    <p id="resultText">Result: —</p>
+    <div class="score">
+      Score: <span id="playerScore">0</span> - <span id="computerScore">0</span>
+    </div>
+  </div>
+
+  <button class="reset-btn" onclick="resetGame()">Reset Game</button>
+
+  <script>
+    let playerScore = 0;
+    let computerScore = 0;
+
+    function playGame(playerChoice) {
+      // Random computer choice
+      const randomNumber = Math.random() * 3;
+      let computerChoice =
+        randomNumber < 1 ? "Rock" : randomNumber < 2 ? "Paper" : "Scissor";
+
+      // Determine result
+      let result = "";
+      if (playerChoice === computerChoice) {
+        result = "It's a Draw!";
+      } else if (
+        (playerChoice === "Rock" && computerChoice === "Scissor") ||
+        (playerChoice === "Paper" && computerChoice === "Rock") ||
+        (playerChoice === "Scissor" && computerChoice === "Paper")
+      ) {
+        result = "You Win!";
+        playerScore++;
+      } else {
+        result = "You Lose!";
+        computerScore++;
+      }
+
+      // Update UI
+      document.getElementById("playerChoice").textContent =
+        "You chose: " + playerChoice;
+      document.getElementById("computerChoice").textContent =
+        "Computer chose: " + computerChoice;
+      document.getElementById("resultText").textContent = "Result: " + result;
+      document.getElementById("playerScore").textContent = playerScore;
+      document.getElementById("computerScore").textContent = computerScore;
+    }
+
+    function resetGame() {
+      playerScore = 0;
+      computerScore = 0;
+      document.getElementById("playerChoice").textContent = "You chose: —";
+      document.getElementById("computerChoice").textContent =
+        "Computer chose: —";
+      document.getElementById("resultText").textContent = "Result: —";
+      document.getElementById("playerScore").textContent = playerScore;
+      document.getElementById("computerScore").textContent = computerScore;
+    }
+  </script>
+</body>
+</html>
